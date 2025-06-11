@@ -105,6 +105,19 @@ button {
   cursor: pointer;
 }
 
+.link-button {
+  background-color: #ff6900;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.link-button:hover {
+  background-color: #ffa940;
+}
+
 button:hover {
   background-color: #ffa940;
 }

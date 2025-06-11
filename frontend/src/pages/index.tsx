@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div className="container">
       <h1>MTG Security Chatbot</h1>
-      <a href="/config">Configuración</a>
+      <a href="/config" className="link-button">Configuración</a>
       <div className="layout">
         <div className="chat-area">
           <div className="chat-box">
