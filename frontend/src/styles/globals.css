@@ -11,17 +11,18 @@ body {
   padding: 1rem;
 }
 
+
 .layout {
   display: flex;
   gap: 1rem;
 }
 
 .chat-area {
-  flex: 1;
+  flex: 0 0 33%;
 }
 
 .pdf-viewer {
-  width: 40%;
+  width: 66%;
   height: 500px;
   border: 1px solid #ccc;
 }
@@ -112,6 +113,7 @@ button {
   border-radius: 4px;
   text-decoration: none;
   display: inline-block;
+  margin-bottom: 1rem;
 }
 
 .link-button:hover {
