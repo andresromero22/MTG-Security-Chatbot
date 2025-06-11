@@ -9,6 +9,7 @@ export default function Home() {
     bot: string
     url?: string | null
   }[]>([])
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null)
 
   const mutation = trpc.sendMessage.useMutation({
     onSuccess(data) {
@@ -16,6 +17,9 @@ export default function Home() {
         ...prev,
         { user: input, bot: data.response, url: data.url },
       ])
+      if (data.url) {
+        setPdfUrl(data.url.replace('./', 'http://localhost:8000/'))
+      }
       setInput('')
     },
   })
@@ -23,23 +27,24 @@ export default function Home() {
   return (
     <div className="container">
       <h1>MTG Security Chatbot</h1>
-      <div className="chat-box">
-        {messages.map((m, i) => (
-          <div key={i} className="message">
-            <div className="user"><strong>Usuario:</strong> {m.user}</div>
-            <div className="bot">
-              <strong>Bot:</strong>{' '}
-              <ReactMarkdown>{m.bot}</ReactMarkdown>
-              {m.url && (
-                <div className="card">
-                  <a href={m.url} target="_blank" rel="noopener noreferrer">
-                    Abrir documento
-                  </a>
+      <a href="/config">Configuración</a>
+      <div className="layout">
+        <div className="chat-area">
+          <div className="chat-box">
+            {messages.map((m, i) => (
+              <div key={i} className="message">
+                <div className="user"><strong>Usuario:</strong> {m.user}</div>
+                <div className="bot">
+                  <strong>Bot:</strong>{' '}
+                  <ReactMarkdown>{m.bot}</ReactMarkdown>
                 </div>
-              )}
-            </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+        {pdfUrl && (
+          <iframe className="pdf-viewer" src={pdfUrl} title="Manual" />
+        )}
       </div>
       <form
         onSubmit={e => {
