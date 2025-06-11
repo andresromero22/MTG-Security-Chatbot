@@ -56,6 +56,7 @@ def build_chat_chain(index_dir: str = "./rag_index") -> ConversationalRetrievalC
         - If you generate Python code, include it in a proper markdown ```python ``` block.
         - Format the answer using Markdown if appropriate.
         - Use numbered lists, bullet points, and bold text where useful.
+        - Do not use markdown tables.
         - If the user says "stop", "exit", "bye", "goodbye", "don't say anything", or similar, respond with: "Goodbye!" and do not provide additional information.
 
         Chat History:

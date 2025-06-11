@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import { trpc } from '../utils/trpc'
 
 export default function Home() {
@@ -44,7 +45,9 @@ export default function Home() {
                 <div className="user"><strong>Usuario:</strong> {m.user}</div>
                 <div className="bot">
                   <strong>Bot:</strong>{' '}
-                  <ReactMarkdown>{m.bot}</ReactMarkdown>
+                  <ReactMarkdown>
+                    {(String(m.bot))}
+                  </ReactMarkdown>
                 </div>
               </div>
             ))}
