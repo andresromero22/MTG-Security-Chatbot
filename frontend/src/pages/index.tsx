@@ -54,20 +54,27 @@ export default function Home() {
           <iframe className="pdf-viewer" src={pdfUrl} title="Manual" />
         )}
       </div>
-      <form
-        onSubmit={e => {
-          e.preventDefault()
-          mutation.mutate({ message: input })
-        }}
-        className="input-form"
-      >
-        <input
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          placeholder="Escribe tu mensaje"
-        />
-        <button type="submit">Enviar</button>
-      </form>
+      <div className='layout'>
+        <div className='chat-area'>
+
+          <form
+            onSubmit={e => {
+              e.preventDefault()
+              mutation.mutate({ message: input })
+            }}
+            className="input-form"
+            >
+            {/* <div className='chat-area'> */}
+              <input
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                placeholder="Escribe tu mensaje"
+                />
+              <button type="submit">Enviar</button>
+            {/* </div> */}
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

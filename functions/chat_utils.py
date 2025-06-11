@@ -69,7 +69,7 @@ def build_chat_chain(index_dir: str = "./rag_index") -> ConversationalRetrievalC
         """
     )
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
-    llm = ChatOpenAI(model="gpt-3.5-turbo", openai_api_key=openai_api_key)
+    llm = ChatOpenAI(model="gpt-4.1", openai_api_key=openai_api_key)
 
     question_generator_template = textwrap.dedent(
         """

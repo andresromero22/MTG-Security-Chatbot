@@ -6,8 +6,9 @@ body {
 }
 
 .container {
-  max-width: 900px;
-  margin-left: 2rem;
+  max-width: 100%;
+  margin-left: 5rem;
+  margin-right: 5rem;
   padding: 1rem;
 }
 
@@ -18,13 +19,12 @@ body {
 }
 
 .chat-area {
-  flex: 0 0 33%;
+  flex: 0 0 40%;
 }
 
 .pdf-viewer {
-  width: 66%;
-  height: 500px;
-  border: 1px solid #ccc;
+  flex: 0 0 60%;
+  border: 1rem solid #ffffff;
 }
 
 .manual-item {
