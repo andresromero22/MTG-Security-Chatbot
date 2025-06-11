@@ -1,13 +1,21 @@
 import { useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { trpc } from '../utils/trpc'
 
 export default function Home() {
   const [input, setInput] = useState('')
-  const [messages, setMessages] = useState<{ user: string; bot: string }[]>([])
+  const [messages, setMessages] = useState<{
+    user: string
+    bot: string
+    url?: string | null
+  }[]>([])
 
   const mutation = trpc.sendMessage.useMutation({
     onSuccess(data) {
-      setMessages(prev => [...prev, { user: input, bot: data.response }])
+      setMessages(prev => [
+        ...prev,
+        { user: input, bot: data.response, url: data.url },
+      ])
       setInput('')
     },
   })
@@ -18,9 +26,18 @@ export default function Home() {
       <div className="chat-box">
         {messages.map((m, i) => (
           <div key={i} className="message">
-            <strong>Usuario:</strong> {m.user}
-            <br />
-            <strong>Bot:</strong> {m.bot}
+            <div className="user"><strong>Usuario:</strong> {m.user}</div>
+            <div className="bot">
+              <strong>Bot:</strong>{' '}
+              <ReactMarkdown>{m.bot}</ReactMarkdown>
+              {m.url && (
+                <div className="card">
+                  <a href={m.url} target="_blank" rel="noopener noreferrer">
+                    Abrir documento
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>

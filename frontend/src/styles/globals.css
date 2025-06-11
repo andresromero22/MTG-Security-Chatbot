@@ -1,13 +1,13 @@
 body {
   margin: 0;
   font-family: sans-serif;
-  background-color: #000000;
-  color: white;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 800px;
+  margin-left: 2rem;
   padding: 1rem;
 }
 
@@ -17,16 +17,41 @@ h1 {
 }
 
 .chat-box {
-  background-color: #222;
+  background-color: #fff4e5;
+  border: 1px solid #ffc488;
   padding: 1rem;
-  height: 400px;
+  height: 500px;
   overflow-y: auto;
   margin-bottom: 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .message {
   margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: #fff8f2;
+}
+
+.message .user {
+  background-color: #ffe6cc;
+  padding: 0.25rem;
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+}
+
+.message .bot {
+  background-color: #fff8f2;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.card {
+  background-color: #fff0e0;
+  border: 1px solid #ffcc99;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
 }
 
 .input-form {
@@ -48,4 +73,8 @@ button {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #ffa940;
 }
