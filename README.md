@@ -1,2 +1,32 @@
 # MTG-Security-Chatbot
-This is a security mining chatbot that answer questions about equipments in mining operations and the procedures to demount and mount OTR tires
+
+This project contains a mining security chatbot implemented in Python. The bot can be used from the terminal or through a simple web interface.
+
+## Running the CLI bot
+
+```bash
+pip install -r requirements.txt
+python scripts/chatbot.py
+```
+
+## Running the web interface
+
+1. Start the FastAPI backend:
+
+```bash
+python scripts/web_server.py
+```
+
+The API will be available on `http://localhost:8000`.
+
+2. In another terminal start the Next.js frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Then open `http://localhost:3000` in your browser. The interface uses Kaltire's colours (black `#000000`, orange `#ff6900`, and white).
+
+The frontend is built with Next.js and tRPC as a lightweight example of the Next + tRPC + Prisma + PostgreSQL stack, although no database is required for local usage.
