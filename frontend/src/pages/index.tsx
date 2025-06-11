@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { trpc } from '../utils/trpc'
 
@@ -10,6 +10,14 @@ export default function Home() {
     url?: string | null
   }[]>([])
   const [pdfUrl, setPdfUrl] = useState<string | null>(null)
+  const chatBoxRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const box = chatBoxRef.current
+    if (box) {
+      box.scrollTop = box.scrollHeight
+    }
+  }, [messages])
 
   const mutation = trpc.sendMessage.useMutation({
     onSuccess(data) {
@@ -30,7 +38,7 @@ export default function Home() {
       <a href="/config" className="link-button">Configuración</a>
       <div className="layout">
         <div className="chat-area">
-          <div className="chat-box">
+          <div className="chat-box" ref={chatBoxRef}>
             {messages.map((m, i) => (
               <div key={i} className="message">
                 <div className="user"><strong>Usuario:</strong> {m.user}</div>
