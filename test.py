@@ -1,11 +1,13 @@
 import matplotlib.pyplot as plt
 
 # Data
-tools_needed = ["Tire handler", "Soft face hammer", "Heavy gauge wire", "Lock ring bars",
-                "Valve accessories", "Wrenches", "Disc grinder", "49” O-ring", "Pliers",
-                "Screwdriver", "Knife/Scissors", "Hydraulic Jack and Support Stand",
-                "Hydraulic power pack", "Hydraulic ram / bead breaker", "Pressure Washer",
-                "Soap spray", "Wheel gauges"]
+tools_needed = [
+    "Tire handler", "Soft face hammer", "Heavy gauge wire", "Lock ring bars",
+    "Valve accessories", "Wrenches", "Disc grinder", "49” O-ring", "Pliers",
+    "Screwdriver", "Knife/Scissors", "Hydraulic Jack and Support Stand",
+    "Hydraulic power pack", "Hydraulic ram / bead breaker", "Pressure Washer",
+    "Soap spray", "Wheel gauges"
+]
 number_of_tools = [1] * len(tools_needed)  # Each tool counts as one
 
 # Plot
