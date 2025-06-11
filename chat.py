@@ -138,6 +138,8 @@ def extract_python_code(text):
 import matplotlib.pyplot as plt
 import os
 import uuid
+import subprocess
+import sys
 
 # Create graphs/ folder if not exists
 os.makedirs("./graphs", exist_ok=True)
@@ -202,8 +204,16 @@ while True:
         graph_path = execute_and_save_plot(code_str)
         if graph_path:
             print(f"\n👉 Generated graph saved here: {graph_path}")
-            # Automatically open the image (Windows)
-            os.startfile(graph_path)
+            # Attempt to open the image on the current platform
+            try:
+                if hasattr(os, "startfile"):
+                    os.startfile(graph_path)  # Windows
+                elif sys.platform == "darwin":
+                    subprocess.call(["open", graph_path])
+                else:
+                    subprocess.call(["xdg-open", graph_path])
+            except Exception as e:
+                print(f"⚠️ Unable to open image automatically: {e}")
         else:
             print("\n⚠️ Failed to execute generated code.")
 
