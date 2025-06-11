@@ -6,3 +6,4 @@ pypdf
 openai
 tiktoken
 faiss-cpu
+matplotlib
