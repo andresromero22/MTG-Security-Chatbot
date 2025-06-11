@@ -16,6 +16,19 @@ export const appRouter = t.router({
       const data = await res.json()
       return data
     }),
+  listManuals: t.procedure.query(async () => {
+    const res = await fetch('http://localhost:8000/manuals')
+    const data = await res.json()
+    return data.files as string[]
+  }),
+  deleteManual: t.procedure
+    .input(z.object({ filename: z.string() }))
+    .mutation(async ({ input }) => {
+      await fetch(`http://localhost:8000/manuals/${encodeURIComponent(input.filename)}`, {
+        method: 'DELETE',
+      })
+      return true
+    }),
 })
 
 export type AppRouter = typeof appRouter

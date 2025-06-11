@@ -6,9 +6,39 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin-left: 2rem;
   padding: 1rem;
+}
+
+.layout {
+  display: flex;
+  gap: 1rem;
+}
+
+.chat-area {
+  flex: 1;
+}
+
+.pdf-viewer {
+  width: 40%;
+  height: 500px;
+  border: 1px solid #ccc;
+}
+
+.manual-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.manual-item button {
+  margin-left: auto;
+}
+
+.pdf-icon {
+  font-size: 1.2rem;
 }
 
 h1 {
@@ -73,6 +103,19 @@ button {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.link-button {
+  background-color: #ff6900;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.link-button:hover {
+  background-color: #ffa940;
 }
 
 button:hover {
