@@ -6,16 +6,12 @@ This project contains a mining security chatbot implemented in Python. The bot c
 
 ```bash
 pip install -r requirements.txt
-python scripts/chatbot.py
-```
+python -m scripts.chatbot
 
 ## Running the web interface
 
 1. Start the FastAPI backend:
-
-```bash
-python scripts/web_server.py
-```
+python -m scripts.web_server
 
 The API will be available on `http://localhost:8000`.
 
