@@ -1,0 +1,8 @@
+fastapi>=0.95.0
+langchain
+langchain-community
+langchain-openai
+pypdf
+openai
+tiktoken
+faiss-cpu
