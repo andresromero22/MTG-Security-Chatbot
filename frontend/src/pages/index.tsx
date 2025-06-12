@@ -51,14 +51,6 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
-        {pdfUrl && (
-          <iframe className="pdf-viewer" src={pdfUrl} title="Manual" />
-        )}
-      </div>
-      <div className='layout'>
-        <div className='chat-area'>
-
           <form
             onSubmit={e => {
               e.preventDefault()
@@ -76,6 +68,9 @@ export default function Home() {
             {/* </div> */}
           </form>
         </div>
+        {pdfUrl && (
+          <iframe className="pdf-viewer" src={pdfUrl} title="Manual" />
+        )}
       </div>
     </div>
   )
