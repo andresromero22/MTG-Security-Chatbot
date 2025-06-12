@@ -36,7 +36,6 @@ export default function Home() {
   return (
     <div className="container">
       <h1>MTG Security Chatbot</h1>
-      <a href="/config" className="link-button">Configuration</a>
       <div className="layout">
         <div className="chat-area">
           <div className="chat-box" ref={chatBoxRef}>
