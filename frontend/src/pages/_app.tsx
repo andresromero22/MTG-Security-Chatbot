@@ -25,8 +25,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           <header className="header">
             <Image src={kaltireLogo} alt="Kaltire" className="logo" />
             <nav>
-              <Link href="/" className="nav-link">Inicio</Link>
-              <Link href="/config" className="nav-link">Configuración</Link>
+              <Link href="/" className="nav-link">Chatbot</Link>
+              <Link href="/config" className="nav-link">Configuration</Link>
             </nav>
           </header>
           <Component {...pageProps} />
