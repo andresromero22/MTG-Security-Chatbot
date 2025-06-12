@@ -36,15 +36,15 @@ export default function Home() {
   return (
     <div className="container">
       <h1>MTG Security Chatbot</h1>
-      <a href="/config" className="link-button">Configuración</a>
+      <a href="/config" className="link-button">Configuration</a>
       <div className="layout">
         <div className="chat-area">
           <div className="chat-box" ref={chatBoxRef}>
             {messages.map((m, i) => (
               <div key={i} className="message">
-                <div className="user"><strong>Usuario:</strong> {m.user}</div>
+                <div className="user"><strong>User:</strong> {m.user}</div>
                 <div className="bot">
-                  <strong>Bot:</strong>{' '}
+                  <strong>KalGuard:</strong>{' '}
                   <ReactMarkdown>
                     {(String(m.bot))}
                   </ReactMarkdown>

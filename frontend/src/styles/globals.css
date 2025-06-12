@@ -19,11 +19,11 @@ body {
 }
 
 .chat-area {
-  flex: 0 0 40%;
+  flex: 0 0 45%;
 }
 
 .pdf-viewer {
-  flex: 0 0 60%;
+  flex: 0 0 55%;
   border: 1rem solid #ffffff;
 }
 

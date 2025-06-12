@@ -20,16 +20,16 @@ export default function Config() {
 
   return (
     <div className="container">
-      <h1>Configuración</h1>
+      <h1>Configuration</h1>
       <div>
         <input type="file" accept="application/pdf" onChange={e => setFile(e.target.files?.[0] ?? null)} />
-        <button onClick={upload}>Agregar manual</button>
+        <button onClick={upload}>Add manual</button>
       </div>
       <ul>
         {manualsQuery.data?.map(m => (
           <li key={m} className="manual-item">
             <span className="pdf-icon">📄</span> {m}
-            <button onClick={() => deleteManual.mutate({ filename: m })}>Eliminar</button>
+            <button onClick={() => deleteManual.mutate({ filename: m })}>Delete</button>
           </li>
         ))}
       </ul>
