@@ -20,7 +20,7 @@ export default function Config() {
 
   return (
     <div className="container">
-      <h1>Configuration</h1>
+      <h1>Files to Training Security Chatbot</h1>
       <div>
         <input type="file" accept="application/pdf" onChange={e => setFile(e.target.files?.[0] ?? null)} />
         <button onClick={upload}>Add manual</button>
