@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.container {
+  max-width: 100%;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  padding: 1rem;
+}
+
+
+.layout {
+  display: flex;
+  gap: 1rem;
+}
+
+.chat-area {
+  flex: 0 0 45%;
+}
+
+.pdf-viewer {
+  flex: 0 0 55%;
+  border: 1rem solid #ffffff;
+}
+
+.manual-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.manual-item button {
+  margin-left: auto;
+}
+
+.pdf-icon {
+  font-size: 1.2rem;
+}
+
+h1 {
+  color: #ff6900;
+  text-align: center;
+}
+
+.chat-box {
+  background-color: #fff4e5;
+  border: 1px solid #ffc488;
+  padding: 1rem;
+  height: 500px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+
+.message {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: #fff8f2;
+}
+
+.message .user {
+  background-color: #ffe6cc;
+  padding: 0.25rem;
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+}
+
+.message .bot {
+  background-color: #fff8f2;
+  padding: 0.25rem;
+  border-radius: 4px;
+}
+
+.card {
+  background-color: #fff0e0;
+  border: 1px solid #ffcc99;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.input-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: none;
+}
+
+button {
+  background-color: #ff6900;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.link-button {
+  background-color: #ff6900;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.link-button:hover {
+  background-color: #ffa940;
+}
+
+button:hover {
+  background-color: #ffa940;
+}

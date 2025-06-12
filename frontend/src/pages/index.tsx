@@ -1,0 +1,83 @@
+import { useState, useEffect, useRef } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+import { trpc } from '../utils/trpc'
+
+export default function Home() {
+  const [input, setInput] = useState('')
+  const [messages, setMessages] = useState<{
+    user: string
+    bot: string
+    url?: string | null
+  }[]>([])
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null)
+  const chatBoxRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const box = chatBoxRef.current
+    if (box) {
+      box.scrollTop = box.scrollHeight
+    }
+  }, [messages])
+
+  const mutation = trpc.sendMessage.useMutation({
+    onSuccess(data) {
+      setMessages(prev => [
+        ...prev,
+        { user: input, bot: data.response, url: data.url },
+      ])
+      if (data.url) {
+        setPdfUrl(data.url.replace('./', 'http://localhost:8000/'))
+      }
+      setInput('')
+    },
+  })
+
+  return (
+    <div className="container">
+      <h1>MTG Security Chatbot</h1>
+      <a href="/config" className="link-button">Configuration</a>
+      <div className="layout">
+        <div className="chat-area">
+          <div className="chat-box" ref={chatBoxRef}>
+            {messages.map((m, i) => (
+              <div key={i} className="message">
+                <div className="user"><strong>User:</strong> {m.user}</div>
+                <div className="bot">
+                  <strong>KalGuard:</strong>{' '}
+                  <ReactMarkdown>
+                    {(String(m.bot))}
+                  </ReactMarkdown>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        {pdfUrl && (
+          <iframe className="pdf-viewer" src={pdfUrl} title="Manual" />
+        )}
+      </div>
+      <div className='layout'>
+        <div className='chat-area'>
+
+          <form
+            onSubmit={e => {
+              e.preventDefault()
+              mutation.mutate({ message: input })
+            }}
+            className="input-form"
+            >
+            {/* <div className='chat-area'> */}
+              <input
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                placeholder="Escribe tu mensaje"
+                />
+              <button type="submit">Enviar</button>
+            {/* </div> */}
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+}

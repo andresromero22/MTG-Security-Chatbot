@@ -56,6 +56,7 @@ def build_chat_chain(index_dir: str = "./rag_index") -> ConversationalRetrievalC
         - If you generate Python code, include it in a proper markdown ```python ``` block.
         - Format the answer using Markdown if appropriate.
         - Use numbered lists, bullet points, and bold text where useful.
+        - Do not use markdown tables.
         - If the user says "stop", "exit", "bye", "goodbye", "don't say anything", or similar, respond with: "Goodbye!" and do not provide additional information.
 
         Chat History:
@@ -69,7 +70,7 @@ def build_chat_chain(index_dir: str = "./rag_index") -> ConversationalRetrievalC
         """
     )
     prompt = PromptTemplate(template=template, input_variables=["context", "question"])
-    llm = ChatOpenAI(model="gpt-3.5-turbo", openai_api_key=openai_api_key)
+    llm = ChatOpenAI(model="gpt-4.1", openai_api_key=openai_api_key)
 
     question_generator_template = textwrap.dedent(
         """
