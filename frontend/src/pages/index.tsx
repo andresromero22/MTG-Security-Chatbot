@@ -15,6 +15,11 @@ export default function Home() {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null)
   const chatBoxRef = useRef<HTMLDivElement>(null)
 
+  const handleClear = () => {
+    setMessages([])
+    setPdfUrl(null)
+  }
+
   useEffect(() => {
     const box = chatBoxRef.current
     if (box) {
@@ -24,10 +29,13 @@ export default function Home() {
 
   const mutation = trpc.sendMessage.useMutation({
     onSuccess(data) {
-      setMessages(prev => [
-        ...prev,
-        { user: input, bot: data.response, url: data.url },
-      ])
+      setMessages(prev => {
+        const newMsgs = [
+          ...prev,
+          { user: input, bot: data.response, url: data.url },
+        ]
+        return newMsgs.slice(-5)
+      })
       if (data.url) {
         setPdfUrl(data.url.replace('./', `${baseURL}/`))
       }
@@ -67,6 +75,14 @@ export default function Home() {
                 placeholder="Escribe tu mensaje"
                 />
               <button type="submit">Enviar</button>
+              <button
+                type="button"
+                className="clear-button"
+                onClick={handleClear}
+                title="Limpiar historial"
+              >
+                🗑️
+              </button>
             {/* </div> */}
           </form>
         </div>

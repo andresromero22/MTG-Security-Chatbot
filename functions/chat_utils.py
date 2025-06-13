@@ -13,7 +13,7 @@ from typing import List, Optional
 import matplotlib.pyplot as plt
 from langchain.chains import ConversationalRetrievalChain, LLMChain
 from langchain.chains.combine_documents.stuff import StuffDocumentsChain
-from langchain.memory import ConversationBufferMemory
+from langchain.memory import ConversationBufferWindowMemory
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import FAISS
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
@@ -100,7 +100,8 @@ def build_chat_chain(index_dir: str = "./rag_index") -> ConversationalRetrievalC
         document_variable_name="context",
     )
 
-    memory = ConversationBufferMemory(
+    memory = ConversationBufferWindowMemory(
+        k=5,
         memory_key="chat_history",
         return_messages=True,
         output_key="answer",
