@@ -17,6 +17,9 @@ from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import FAISS
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from dotenv import load_dotenv
+
+load_dotenv()
 
 __all__ = [
     "build_chat_chain",
@@ -31,8 +34,9 @@ __all__ = [
 
 def build_chat_chain(index_dir: str = "./rag_index") -> ConversationalRetrievalChain:
     """Build the conversational retrieval chain used by the chatbot."""
-    with open("./resources/api_key.txt", "r") as f:
-        openai_api_key = f.read().strip()
+    openai_api_key = os.getenv("OPEN_AI_KEY")
+    if not openai_api_key:
+        raise RuntimeError("OPEN_AI_KEY environment variable not set")
 
     embedding = OpenAIEmbeddings(openai_api_key=openai_api_key)
     vectorstore = FAISS.load_local(
