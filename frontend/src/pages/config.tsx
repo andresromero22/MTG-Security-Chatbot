@@ -1,13 +1,25 @@
 import { useEffect, useState } from 'react'
-import { trpc } from '../utils/trpc'
 
 export default function Config() {
-  const manualsQuery = trpc.listManuals.useQuery()
-  const deleteManual = trpc.deleteManual.useMutation({
-    onSuccess: () => manualsQuery.refetch(),
-  })
-
+  const [manuals, setManuals] = useState<string[]>([])
   const [file, setFile] = useState<File | null>(null)
+
+  const fetchManuals = async () => {
+    const res = await fetch('http://localhost:8000/manuals')
+    const data = await res.json()
+    setManuals(data.files as string[])
+  }
+
+  const deleteManual = async (filename: string) => {
+    await fetch(`http://localhost:8000/manuals/${encodeURIComponent(filename)}`, {
+      method: 'DELETE',
+    })
+    fetchManuals()
+  }
+
+  useEffect(() => {
+    fetchManuals()
+  }, [])
 
   const upload = async () => {
     if (!file) return
@@ -15,7 +27,7 @@ export default function Config() {
     form.append('file', file)
     await fetch('http://localhost:8000/manuals', { method: 'POST', body: form })
     setFile(null)
-    manualsQuery.refetch()
+    fetchManuals()
   }
 
   return (
@@ -26,10 +38,10 @@ export default function Config() {
         <button onClick={upload}>Add manual</button>
       </div>
       <ul>
-        {manualsQuery.data?.map(m => (
+        {manuals.map(m => (
           <li key={m} className="manual-item">
             <span className="pdf-icon">📄</span> {m}
-            <button onClick={() => deleteManual.mutate({ filename: m })}>Delete</button>
+            <button onClick={() => deleteManual(m)}>Delete</button>
           </li>
         ))}
       </ul>

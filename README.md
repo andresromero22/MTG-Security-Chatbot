@@ -25,4 +25,4 @@ npm run dev
 
 Then open `http://localhost:3000` in your browser. The interface uses Kaltire's colours (black `#000000`, orange `#ff6900`, and white).
 
-The frontend is built with Next.js and tRPC as a lightweight example of the Next + tRPC + Prisma + PostgreSQL stack, although no database is required for local usage.
+The frontend is built with Next.js.
