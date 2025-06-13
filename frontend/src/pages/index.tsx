@@ -3,6 +3,8 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { trpc } from '../utils/trpc'
 
+const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000'
+
 export default function Home() {
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState<{
@@ -27,7 +29,7 @@ export default function Home() {
         { user: input, bot: data.response, url: data.url },
       ])
       if (data.url) {
-        setPdfUrl(data.url.replace('./', 'http://localhost:8000/'))
+        setPdfUrl(data.url.replace('./', `${baseURL}/`))
       }
       setInput('')
     },

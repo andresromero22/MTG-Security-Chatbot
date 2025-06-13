@@ -5,6 +5,9 @@ from langchain.document_loaders import PyPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 def create_vector_index(pdf_dir: str = "./manuals", quick_ref: str = "./resources/quick_reference.txt", index_dir: str = "./rag_index") -> None:
@@ -20,8 +23,9 @@ def create_vector_index(pdf_dir: str = "./manuals", quick_ref: str = "./resource
         Directory where the FAISS index will be saved.
     """
     # Load API key
-    with open("./resources/api_key.txt", "r") as f:
-        openai_api_key = f.read().strip()
+    openai_api_key = os.getenv("OPEN_AI_KEY")
+    if not openai_api_key:
+        raise RuntimeError("OPEN_AI_KEY environment variable not set")
 
     embedding = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
