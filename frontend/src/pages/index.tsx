@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import { trpc } from '../utils/trpc'
 
 export default function Home() {
   const [input, setInput] = useState('')
@@ -20,18 +19,22 @@ export default function Home() {
     }
   }, [messages])
 
-  const mutation = trpc.sendMessage.useMutation({
-    onSuccess(data) {
-      setMessages(prev => [
-        ...prev,
-        { user: input, bot: data.response, url: data.url },
-      ])
-      if (data.url) {
-        setPdfUrl(data.url.replace('./', 'http://localhost:8000/'))
-      }
-      setInput('')
-    },
-  })
+  const sendMessage = async () => {
+    const res = await fetch('http://localhost:8000/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: input }),
+    })
+    const data = await res.json()
+    setMessages(prev => [
+      ...prev,
+      { user: input, bot: data.response, url: data.url },
+    ])
+    if (data.url) {
+      setPdfUrl(data.url.replace('./', 'http://localhost:8000/'))
+    }
+    setInput('')
+  }
 
   return (
     <div className="container">
@@ -54,7 +57,7 @@ export default function Home() {
           <form
             onSubmit={e => {
               e.preventDefault()
-              mutation.mutate({ message: input })
+              sendMessage()
             }}
             className="input-form"
             >
