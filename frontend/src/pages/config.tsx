@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { trpc } from '../utils/trpc'
 
+const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000'
+
 export default function Config() {
   const manualsQuery = trpc.listManuals.useQuery()
   const deleteManual = trpc.deleteManual.useMutation({
@@ -13,7 +15,7 @@ export default function Config() {
     if (!file) return
     const form = new FormData()
     form.append('file', file)
-    await fetch('http://localhost:8000/manuals', { method: 'POST', body: form })
+    await fetch(`${baseURL}/manuals`, { method: 'POST', body: form })
     setFile(null)
     manualsQuery.refetch()
   }
