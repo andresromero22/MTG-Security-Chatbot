@@ -81,7 +81,7 @@ export default function Home() {
                 onClick={handleClear}
                 title="Limpiar historial"
               >
-                🖌️
+                🗑️
               </button>
             {/* </div> */}
           </form>
