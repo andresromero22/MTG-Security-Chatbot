@@ -9,3 +9,4 @@ faiss-cpu
 matplotlib
 uvicorn
 python-dotenv
+python-multipart
